@@ -30,14 +30,14 @@ Example:<br>
 curl --header "Content-Type: application/json" --request GET --data "{\"email\":\"ashima@gmail.com\",\"password\":\"ashima321\"}" http://localhost:8080/api/customers/login
 
 2. To retrieve a customer based on uuid http://localhost:8080/api/customers/{customerUuid}
-Requires customerUuid as a path param. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>  
+Requires customerUuid as a path param. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br> 
 Example: <br>
 curl  http://localhost:8080/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 3. To update a customer's details http://localhost:8080/api/customers/resetpassword/{customerUuid}
 Requires customerUuid as a path param and a request body containing firstName, lastName and dateOfBirth as JSON. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>
 Example: <br>
-curl --header "Content-Type: application/json" --request PUT --data "{\"dateOfBirth\":\"1988-02-15\",\"firstName\":\"Jenny\",\"lastName\":\"Warner\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
+curl --header "Content-Type: application/json" --request PUT --data "{\"dateOfBirth\":\"1988-02-15\", \"firstName\":\"Jenny\", \"lastName\":\"Warner\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 4. To get 3 customers sorted by date descending http://localhost:8080/api/customers/sortandlimit
 Returns a list of 3 customers ordered by their date of birth in descending order. <br>
