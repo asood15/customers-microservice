@@ -25,27 +25,27 @@ Default port configured is 8080.
 
 ### Api Details
 1. To authenticate a customer: http://localhost:8080/api/customers/login
-Requires email and password to be sent as request parameters as JSON. Returns customer details when successful. Throws CustomerAuthenticationException when password does not match and throws CustomerNotFoundException when no email matching the input is found
-Example:
+Requires email and password to be sent as request parameters as JSON. Returns customer details when successful. Throws CustomerAuthenticationException when password does not match and throws CustomerNotFoundException when no email matching the input is found. <br>
+Example:<br>
 curl --header "Content-Type: application/json" --request GET --data "{\"email\":\"ashima@gmail.com\",\"password\":\"ashima321\"}" http://localhost:8080/api/customers/login
 
 2. To retrieve a customer based on uuid http://localhost:8080/api/customers/{customerUuid}
-Requires customerUuid as a path param. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found  
-Example:
+Requires customerUuid as a path param. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>  
+Example: <br>
 curl  http://localhost:8080/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 3. To update a customer's details http://localhost:8080/api/customers/resetpassword/{customerUuid}
-Requires customerUuid as a path param and a request body containing firstName, lastName and dateOfBirth as JSON. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found
-Example:
+Requires customerUuid as a path param and a request body containing firstName, lastName and dateOfBirth as JSON. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>
+Example: <br>
 curl --header "Content-Type: application/json" --request PUT --data "{\"dateOfBirth\":\"1988-02-15\",\"firstName\":\"Jenny\",\"lastName\":\"Warner\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 4. To get 3 customers sorted by date descending http://localhost:8080/api/customers/sortandlimit
-Returns a list of 3 customers ordered by their date of birth in descending order <br>
-Example:
+Returns a list of 3 customers ordered by their date of birth in descending order. <br>
+Example: <br>
 curl  http://localhost:8080/api/customers/sortandlimit
 
 5. To update a password http://localhost:8080/api/customers/resetpassword/{customerUuid}
-Requires customerUuid as a path param and the password to be changed as a request body. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found  
-Example:
+Requires customerUuid as a path param and the password to be changed as a request body. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>  
+Example: <br>
 curl --header "Content-Type: application/json" --request PATCH --data "ashima" http://localhost:8080/api/customers/resetpassword/2bf1e766-7f49-431b-8efa-713c27cdb107
 
