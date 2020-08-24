@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.customer.dto.CustomerDto;
@@ -52,7 +53,7 @@ public class CustomerController {
 	
 	@PatchMapping("/resetpassword/{customerUuid}")
 	public ResponseEntity<CustomerDto> updatePassword(@PathVariable String customerUuid, 
-			@NotBlank String password) {
+			@NotBlank @RequestBody String password) {
 		CustomerDto customerDto = customerService.updatePassword(customerUuid, password);
 		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
 	}

@@ -3,12 +3,15 @@ package com.spring.customer.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class CustomerDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String firstName;
 	private String lastName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	private String customerUuid;
 	private String email;
