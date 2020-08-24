@@ -40,7 +40,7 @@ Example:
 curl --header "Content-Type: application/json" --request PUT --data "{\"dateOfBirth\":\"1988-02-15\",\"firstName\":\"Jenny\",\"lastName\":\"Warner\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 4. To get 3 customers sorted by date descending http://localhost:8080/api/customers/sortandlimit
-Returns a list of 3 customers ordered by their date of birth in descending order
+Returns a list of 3 customers ordered by their date of birth in descending order <br>
 Example:
 curl  http://localhost:8080/api/customers/sortandlimit
 
