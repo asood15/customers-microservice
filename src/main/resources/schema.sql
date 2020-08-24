@@ -1,0 +1,11 @@
+
+CREATE TABLE IF NOT EXISTS customer (
+
+id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(100) NOT NULL,
+last_name VARCHAR(100) NOT NULL,
+date_of_birth date NOT NULL,
+password VARCHAR(256) NOT NULL,
+customer_uuid VARCHAR(36) NOT NULL UNIQUE,
+email varchar(100) NOT NULL UNIQUE
+);
