@@ -45,7 +45,7 @@ Example: <br>
 curl  http://localhost:8080/api/customers/sortandlimit
 
 5. To update a password http://localhost:8080/api/customers/resetpassword/{customerUuid}
-Requires customerUuid as a path param and the password to be changed as a request body. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>  
+Requires customerUuid as a path param and the password to be changed as a request body. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found.  
 Example: <br>
 curl --header "Content-Type: application/json" --request PATCH --data "ashima" http://localhost:8080/api/customers/resetpassword/2bf1e766-7f49-431b-8efa-713c27cdb107
 
