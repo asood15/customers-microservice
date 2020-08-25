@@ -7,15 +7,20 @@ After cloning the project, cd to the local path where the project
 mvn clean install
 ```
 
-### Running the tests
+- Running the tests
+```
 mvn test
+```
 
-### Running the project 
-#### Using Maven
+- Running the project 
+ Using Maven
+```
 mvn spring-boot:run
-#### Using java jar
+```
+ Using java jar
+```
 java -jar target/customers-microservice-0.0.1-SNAPSHOT.jar
-
+```
 Default port configured is 8080. 
 
 ### Assumptions
