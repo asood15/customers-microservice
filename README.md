@@ -1,9 +1,11 @@
 ## Customers-Microservice
 
-After cloning the project, cd to the local path where the project is and run the commands
+After cloning the project, cd to the local path where the project
 
-### Building the project
+- Building the project
+```
 mvn clean install
+```
 
 ### Running the tests
 mvn test
