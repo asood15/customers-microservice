@@ -13,11 +13,11 @@ mvn test
 ```
 
 - Running the project 
- Using Maven
+Using Maven
 ```
 mvn spring-boot:run
 ```
- Using java jar
+Using java jar
 ```
 java -jar target/customers-microservice-0.0.1-SNAPSHOT.jar
 ```
