@@ -58,8 +58,6 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customer = customerRepo.findByCustomerUuid(customerUuid);
 		if (customer != null) {
 			Customer updatedCustomer = modelMapper.map(customerRequestDto, Customer.class);
-			System.out.println(customer.getDateOfBirth());
-			System.out.println(updatedCustomer.getDateOfBirth());
 			updatedCustomer.setCustomerUuid(customerUuid);
 			updatedCustomer.setId(customer.getId());
 			updatedCustomer.setEmail(customer.getEmail());
