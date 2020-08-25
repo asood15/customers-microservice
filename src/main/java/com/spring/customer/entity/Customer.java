@@ -29,26 +29,26 @@ public class Customer {
 	private String customerUuid;
 
 	@Column(nullable = false, length = 50)
-	@NotBlank(message = "*First Name cannot be empty")
+	@NotBlank(message = "First Name cannot be empty")
 	private String firstName;
 
 	@Column(nullable = false, length = 50)
-	@NotBlank(message = "*Last Name cannot be empty")
+	@NotBlank(message = "Last Name cannot be empty")
 	private String lastName;
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "*Date cannot be empty")
+	@NotNull(message = "Date cannot be empty")
 	private Date dateOfBirth;
 
 	@Column(nullable = false, length = 150)
-	@NotBlank(message = "*Password cannot be empty")
+	@NotBlank(message = "Password cannot be empty")
 	private String password;
 
 	@Column(nullable = false, unique = true)
-	@NotBlank(message = "*Email cannot be empty")
-	@Email(message = "*Please provide a valid email")
+	@NotBlank(message = "Email cannot be empty")
+	@Email(message = "Please provide a valid email")
 	private String email;
 
 	public Customer() {

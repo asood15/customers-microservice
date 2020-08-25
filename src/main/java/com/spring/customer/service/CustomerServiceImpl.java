@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.spring.customer.dto.CustomerDto;
 import com.spring.customer.dto.CustomerLoginDetails;
+import com.spring.customer.dto.CustomerPasswordDetails;
 import com.spring.customer.dto.CustomerRequestDto;
 import com.spring.customer.entity.Customer;
 import com.spring.customer.exception.CustomerAuthenticationException;
 import com.spring.customer.exception.CustomerNotFoundException;
+import com.spring.customer.exception.PasswordMismatchException;
 import com.spring.customer.repository.CustomerRepository;
 
 @Service
@@ -56,6 +58,8 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customer = customerRepo.findByCustomerUuid(customerUuid);
 		if (customer != null) {
 			Customer updatedCustomer = modelMapper.map(customerRequestDto, Customer.class);
+			System.out.println(customer.getDateOfBirth());
+			System.out.println(updatedCustomer.getDateOfBirth());
 			updatedCustomer.setCustomerUuid(customerUuid);
 			updatedCustomer.setId(customer.getId());
 			updatedCustomer.setEmail(customer.getEmail());
@@ -68,12 +72,15 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerDto updatePassword(String customerUuid, String password) {
+	public CustomerDto updatePassword(String customerUuid, CustomerPasswordDetails passwordDetails) {
 		Customer customer = customerRepo.findByCustomerUuid(customerUuid);
 		if (customer != null) {
-			customer.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
-			Customer updatedCustomer = customerRepo.save(customer);
-			return modelMapper.map(updatedCustomer, CustomerDto.class);
+			if (BCrypt.checkpw(passwordDetails.getOldPassword(), customer.getPassword())) {
+				customer.setPassword(BCrypt.hashpw(passwordDetails.getNewPassword(), BCrypt.gensalt()));
+				Customer updatedCustomer = customerRepo.save(customer);
+				return modelMapper.map(updatedCustomer, CustomerDto.class);
+			}
+			throw new  PasswordMismatchException("Old password does not match");
 		} else {
 			throw new CustomerNotFoundException("Customer with id " + customerUuid + " not found!");
 		}

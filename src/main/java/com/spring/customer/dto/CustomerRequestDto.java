@@ -2,8 +2,6 @@ package com.spring.customer.dto;
 
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class CustomerRequestDto {
 
 	@Size(max=50, min=2, message = "First name should be of 2-50 characters")
-	@NotBlank(message = "*First name cannot be empty")
+	@NotBlank(message = "First name cannot be empty")
 	private String firstName;
 	
 	@Size(max=50, min=2, message = "First name should be of 2-50 characters")
@@ -22,7 +20,6 @@ public class CustomerRequestDto {
 	
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Date cannot be empty")
 	private Date dateOfBirth;
 	
