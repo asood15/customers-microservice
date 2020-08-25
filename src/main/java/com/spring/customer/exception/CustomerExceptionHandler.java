@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class CustomerEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 
 	 @ExceptionHandler(value = CustomerNotFoundException.class)
 	   public ResponseEntity<Object> customerNotFoundException(CustomerNotFoundException exception) {
@@ -23,6 +23,11 @@ public class CustomerEntityExceptionHandler extends ResponseEntityExceptionHandl
 	 @ExceptionHandler(value = CustomerAuthenticationException.class)
 	   public ResponseEntity<Object> customerAuthenticationException(CustomerAuthenticationException exception) {
 	      return new ResponseEntity<>(exception.getErrorMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+	   }
+	 
+	 @ExceptionHandler(value = PasswordMismatchException.class)
+	   public ResponseEntity<Object> customerAuthenticationException(PasswordMismatchException exception) {
+	      return new ResponseEntity<>(exception.getErrorMessage(), HttpStatus.BAD_REQUEST);
 	   }
 	 
 	 
