@@ -12,7 +12,8 @@ mvn clean install
 mvn test
 ```
 
-- Running the project 
+- Running the project <br>
+
 Using Maven
 ```
 mvn spring-boot:run
