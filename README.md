@@ -32,6 +32,7 @@ There is no password set and default username is sa
 3. Integration tests have their own schema, data and drop files to keep testing seperate from the main code
 4. Data Transfer Object is used to send customerDetails as a response of the API. It does not include password as this is sensitive information. For login and update endpoints other models are used to get request bodies to provide loose coupling
 5. data.sql file in src/main/resources has the data that is loaded when the application starts up. All passwords are firstName(lowercase)+321. Example when firstName is Ashima then password is ashima321
+6. In production, spring security should be used to authenticate a user and set JWT tokens in the header for any future requets to secure the application. Unauthenticated requests and invalid JWT tokens in headers should bot be allowed to make any API calls
 
 ### Api Details
 1. To authenticate a customer: http://localhost:8080/api/customers/login
@@ -45,7 +46,7 @@ Example: <br>
 curl  http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
 3. To update a customer's details http://localhost:8080/api/customers/resetpassword/{customerUuid}
-Requires customerUuid as a path param and a request body containing firstName, lastName and dateOfBirth as JSON. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>
+Requires customerUuid as a path param and a request body containing firstName, lastName and dateOfBirth as JSON. Email, id, uuid cannot be changed and there is a different call to change password. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found. <br>
 Example: <br>
 curl --header "Content-Type: application/json" --request PUT --data "{\"dateOfBirth\":\"1988-02-15\", \"firstName\":\"Jenny\", \"lastName\":\"Warner\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107
 
