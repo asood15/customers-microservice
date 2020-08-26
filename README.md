@@ -31,7 +31,7 @@ There is no password set and default username is sa
 2. Customer table consists of the following fields: id (auto incremented, primary key), customerUuid(used to uniquely identify a customer), firstName, lastName, dateOfBirth, password (stored in hashed format), email (a unique identifier for each customer, needed for logging in) 
 3. Integration tests have their own schema, data and drop files to keep testing seperate from the main code
 4. Data Transfer Object is used to send customerDetails as a response of the API. It does not include password as this is sensitive information. For login and update endpoints other models are used to get request bodies to provide loose coupling
-5. data.sql file in src/main/resources has the data that is loaded when the application starts up. All passwords are firstName(lowercase)+321. Example when firstName is Ashima then password is ashima321
+5. data.sql file in src/main/resources has the data that is loaded when the application starts up. All passwords are hashed and stored. To test the passwords use the firstName(lowercase)+321. Example when firstName is Ashima then password is ashima321
 6. In production, spring security should be used to authenticate a user and set JWT tokens in the header for any future requets to secure the application. Unauthenticated requests and invalid JWT tokens in headers should bot be allowed to make any API calls
 
 ### Api Details
