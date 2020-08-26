@@ -39,20 +39,20 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/{customerUuid}")
-	public ResponseEntity<CustomerDto> getCustomer(@PathVariable String customerUuid) {
+	public ResponseEntity<CustomerDto> getCustomer(@PathVariable  @NotBlank(message="uuid cannot be blank") String customerUuid) {
 		CustomerDto customerDto = customerService.getCustomer(customerUuid);
 		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
 	}
 	
 	@PutMapping("/{customerUuid}")
-	public ResponseEntity<CustomerDto> updateCustomer(@PathVariable @NotBlank String customerUuid, 
+	public ResponseEntity<CustomerDto> updateCustomer(@PathVariable @NotBlank(message="uuid cannot be blank") String customerUuid, 
 			@Valid @RequestBody CustomerRequestDto customerRequestDto) {
 		CustomerDto customerDto = customerService.updateCustomer(customerUuid, customerRequestDto);
 		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
 	}
 	
-	@PutMapping("/{customerUuid}/resetpassword")
-	public ResponseEntity<CustomerDto> updatePassword(@PathVariable String customerUuid, 
+	@PutMapping("/{customerUuid}/passwordreset")
+	public ResponseEntity<CustomerDto> updatePassword(@PathVariable  @NotBlank(message="uuid cannot be blank") String customerUuid, 
 			@Valid @RequestBody CustomerPasswordDetails passwordDetails) {
 		CustomerDto customerDto = customerService.updatePassword(customerUuid, passwordDetails);
 		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
