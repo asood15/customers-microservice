@@ -1,6 +1,6 @@
 ## Customers-Microservice
 
-After cloning the project, cd to the local path where the project
+After cloning the project, cd to the local path where the project is
 
 - Building the project
 ```
