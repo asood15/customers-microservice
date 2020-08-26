@@ -55,8 +55,8 @@ This is a Http Get request and returns a list of 3 customers ordered by their da
 Example: <br>
 curl  http://localhost:8080/api/customers/sortandlimit
 
-5. To update a password (PUT) http://localhost:8080/api/customers/{customerUuid}/resetpassword
+5. To update a password (PUT) http://localhost:8080/api/customers/{customerUuid}/passwordreset
 This is a Http Put request requires customerUuid as a path param and the old and new password to be changed as a request body. Returns customer details when successful. Throws CustomerNotFoundException when no matching customerUuid to the path param is found.  
 Example: <br>
-curl --header "Content-Type: application/json" --request PUT --data "{\"oldPassword\":\"ashima321\",\"newPassword\":\"ashima\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107/resetpassword
+curl --header "Content-Type: application/json" --request PUT --data "{\"oldPassword\":\"ashima321\",\"newPassword\":\"ashima\"}" http://localhost:8080/api/customers/2bf1e766-7f49-431b-8efa-713c27cdb107/passwordreset
 
