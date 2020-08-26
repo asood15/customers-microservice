@@ -58,6 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customer = customerRepo.findByCustomerUuid(customerUuid);
 		if (customer != null) {
 			Customer updatedCustomer = modelMapper.map(customerRequestDto, Customer.class);
+			//email, uuid, id and password are not updated in this method
 			updatedCustomer.setCustomerUuid(customerUuid);
 			updatedCustomer.setId(customer.getId());
 			updatedCustomer.setEmail(customer.getEmail());
@@ -73,7 +74,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDto updatePassword(String customerUuid, CustomerPasswordDetails passwordDetails) {
 		Customer customer = customerRepo.findByCustomerUuid(customerUuid);
 		if (customer != null) {
+			// check if old password matches
 			if (BCrypt.checkpw(passwordDetails.getOldPassword(), customer.getPassword())) {
+				//update new password
 				customer.setPassword(BCrypt.hashpw(passwordDetails.getNewPassword(), BCrypt.gensalt()));
 				Customer updatedCustomer = customerRepo.save(customer);
 				return modelMapper.map(updatedCustomer, CustomerDto.class);
