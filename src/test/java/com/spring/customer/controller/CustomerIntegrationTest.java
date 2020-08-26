@@ -2,6 +2,7 @@ package com.spring.customer.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ import com.spring.customer.dto.CustomerRequestDto;
 		@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = { "classpath:drop-test.sql",
 				"classpath:schema-test.sql", "classpath:data-test.sql" }),
 		@Sql(executionPhase = ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:drop-test.sql") })
-public class CustomerServiceIntegrationTest {
+public class CustomerIntegrationTest {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -54,7 +55,7 @@ public class CustomerServiceIntegrationTest {
 	public void ifValidUserAuthenticated_thenSuccess() throws Exception {
 		CustomerLoginDetails loginDetails = new CustomerLoginDetails("ashima@gmail.com", "ashima321");
 		MockHttpServletResponse result = mockMvc
-				.perform(get("/api/customers/login").accept(MediaType.APPLICATION_JSON)
+				.perform(post("/api/customers/login").accept(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(loginDetails)).contentType(MediaType.APPLICATION_JSON))
 				.andReturn().getResponse();
 
@@ -68,7 +69,7 @@ public class CustomerServiceIntegrationTest {
 	public void ifInvalidUserAuthenticated_thenFailure() throws Exception {
 		CustomerLoginDetails loginDetails = new CustomerLoginDetails("ashima@gmail.com", "ashima");
 		MockHttpServletResponse result = mockMvc
-				.perform(get("/api/customers/login").accept(MediaType.APPLICATION_JSON)
+				.perform(post("/api/customers/login").accept(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(loginDetails)).contentType(MediaType.APPLICATION_JSON))
 				.andReturn().getResponse();
 

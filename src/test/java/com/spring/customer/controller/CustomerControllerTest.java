@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.text.ParseException;
@@ -87,7 +88,7 @@ public class CustomerControllerTest {
 		Mockito.when(customerService.authenticateCustomer(Mockito.any(CustomerLoginDetails.class)))
 				.thenReturn(modelMapper.map(customers.get(0), CustomerDto.class));
 
-		MockHttpServletResponse result = mockMvc.perform(get("/api/customers/login").accept(MediaType.APPLICATION_JSON)
+		MockHttpServletResponse result = mockMvc.perform(post("/api/customers/login").accept(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(validLoginDetails)).contentType(MediaType.APPLICATION_JSON))
 				.andReturn().getResponse();
 		assertEquals(HttpStatus.OK.value(), result.getStatus());
@@ -108,7 +109,7 @@ public class CustomerControllerTest {
 		Mockito.when(customerService.authenticateCustomer(Mockito.any(CustomerLoginDetails.class)))
 				.thenThrow(CustomerAuthenticationException.class);
 
-		MockHttpServletResponse result = mockMvc.perform(get("/api/customers/login").accept(MediaType.APPLICATION_JSON)
+		MockHttpServletResponse result = mockMvc.perform(post("/api/customers/login").accept(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(invalidLoginDetails)).contentType(MediaType.APPLICATION_JSON))
 				.andReturn().getResponse();
 
